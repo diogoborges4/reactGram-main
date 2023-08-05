@@ -68,10 +68,15 @@ const Profile = () => {
     };
 
     const formData = new FormData();
-    Object.keys(photoData).forEach((key) =>
+
+    const photoFormData = Object.keys(photoData).forEach((key) =>
       formData.append(key, photoData[key])
     );
+
+    formData.append("photo", photoFormData)
+
     dispatch(publishPhoto(formData));
+
 
     setTitle("");
 
@@ -131,8 +136,10 @@ const Profile = () => {
   return (
     <div id="profile">
       <div className="profile-header">
-        {user.profileImage && (
+        {user.profileImage ? (
           <img src={`${uploads}/users/${user.profileImage}`} alt={user.name} />
+        ) : (
+          <img src={`${uploads}/users/perfil-de-usuario.jpg`} alt={user.name} />
         )}
         <div className="profile-description">
           <h2>{user.name}</h2>
@@ -190,7 +197,7 @@ const Profile = () => {
       <div className="user-photos">
         <h2>Fotos publicadas: </h2>
         <div className="photos-container">
-          {Array.isArray(photos) &&
+          {photos &&
             photos.map((photo) => (
               <div className="photo" key={photo._id}>
                 {photo.image && (
@@ -202,10 +209,10 @@ const Profile = () => {
                 {id === userAuth._id ? (
                   <div className="actions">
                     <Link to={`/photos/${photo._id}`}>
-                      <BsFillEyeFill onClick={() => handleEdit(photo)}/>
-                      <BsPencilFill  />
-                      <BsXLg onClick={() => handleDelete(photo._id)} />
+                      <BsFillEyeFill/>
                     </Link>
+                    <BsPencilFill onClick={() => handleEdit(photo)} />
+                      <BsXLg onClick={() => handleDelete(photo._id)} />
                   </div>
                 ) : (
                   <Link className="btn" to={`/photos/${photo._id}`}>
