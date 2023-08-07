@@ -1,15 +1,28 @@
 .photo-item img {
-    width: 100%;
+  width: 100%;
 }
 
 #home .photo-item h2 {
-    margin-bottom: .2em;
+  margin-bottom: 0.2em;
 }
 
 .photo-author {
-    text-align: left;
+  margin-left: -18px;
 }
 
 .photo-author a {
-    font-weight: bold;
+  font-weight: bold;
+}
+
+.home-profile-header a {
+  display: flex;
+  align-items: center;
+}
+
+.home-profile-header img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 2em;
+  margin-bottom: 1em;
 }

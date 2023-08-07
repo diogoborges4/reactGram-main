@@ -5,7 +5,7 @@ const publishPhotos = async (data, token) => {
 
   try {
     const res = await fetch(api + "/photos", config)
-      .then((res) => res)
+      .then((res) => res.json())
       .catch((err) => err);
 
     return res;

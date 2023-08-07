@@ -132,7 +132,7 @@ const Profile = () => {
     return <p>Carregando...</p>;
   }
 
-  console.log(photos)
+  console.log(user)
   return (
     <div id="profile">
       <div className="profile-header">
@@ -199,7 +199,7 @@ const Profile = () => {
         <div className="photos-container">
           {photos &&
             photos.map((photo) => (
-              <div className="photo" key={photo._id}>
+              <div className="photo" key={photo.id}>
                 {photo.image && (
                   <img
                     src={`${uploads}/photos/${photo.image}`}
