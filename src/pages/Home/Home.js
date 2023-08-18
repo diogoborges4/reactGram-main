@@ -16,7 +16,7 @@ const Home = () => {
 
   const {id} = useParams()
 
-  const { user } = useSelector((state) => state.user);
+  const { users } = useSelector((state) => state.user);
   const { user: userAuth } = useSelector((state) => state.auth);
   const { photos, loading } = useSelector((state) => state.photo);
 
@@ -33,12 +33,12 @@ const Home = () => {
     return <p>Carregando...</p>;
   }
 
-  console.log(user)
+  console.log(users)
 
   return (
     <div className="home">
       {photos && photos.map((photo) => <div key={photo._id}>
-        <PhotoItem photo={photo} user={user}/>
+        <PhotoItem photo={photo} user={users}/>
         <LikeContainer photo={photo} user={userAuth} handleLike={handleLike}/>
         <Link className="btn" to={`/photos/${photo._id}`}>
           Ver mais
@@ -47,7 +47,7 @@ const Home = () => {
       {photos && photos.length === 0 && (
         <h2 className="no-photos">
           Ainda não há fotos publicadas,{" "}
-          <Link to={`/users/${user._id}`}>Clique aqui</Link>
+          <Link to={`/users/${users._id}`}>Clique aqui</Link>
         </h2>
       )}
     </div>

@@ -10,10 +10,10 @@ const PhotoItem = ({ photo, user }) => {
   return (
     <div className="photo-item">
       <div className="home-profile-header">
-        <Link to={`/users/${photo.userId}`}> {user.profileImage ? (
-          <img src={`${uploads}/users/${user.profileImage}`} alt={user.name} />
+        <Link to={`/users/${photo.userId}`}> {photo.profileImg ? (
+          <img src={`${uploads}/photos/${photo.profileImg}`} alt={photo.userName} />
         ) : (
-          <img src={`${uploads}/users/perfil-de-usuario.jpg`} alt={user.name} />
+          <img src={`${uploads}/users/perfil-de-usuario.jpg`} alt={photo.userName} />
         )} 
         <p className="photo-author">{photo.userName}</p>
         </Link>

@@ -3,6 +3,7 @@ import userService from "../services/userService"
 
 const initialState = {
     user: {},
+    users: [],
     error: false,
     success: false,
     loading: false,
@@ -22,6 +23,14 @@ export const profile = createAsyncThunk(
     }
 )
 
+
+export const getUsers = createAsyncThunk("user/getUsers", async() => {
+    const data = await userService.getUsers()
+  
+    return data
+  })
+
+  
 export const updateProfile = createAsyncThunk(
     "user/update",
     async(user, thunkAPI) => {
@@ -93,6 +102,20 @@ export const userSlice = createSlice({
             state.error = null;
             state.user = action.payload;
         }).addCase(getUserDetails.rejected, (state, action) =>{
+            console.log(state, action);
+            state.loading = false;
+            state.error = action.payload;
+            state.user = {};
+        }).addCase(getUsers.pending, (state) => {
+            state.loading = true;
+            state.error = false;
+        })
+        .addCase(getUsers.fulfilled, (state, action) =>{
+            state.loading = false;
+            state.success = true;
+            state.error = null;
+            state.users = action.payload;
+        }).addCase(getUsers.rejected, (state, action) =>{
             console.log(state, action);
             state.loading = false;
             state.error = action.payload;
