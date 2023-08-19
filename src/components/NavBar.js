@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout, reset } from "../slices/authSlice";
 import { useState } from "react";
+import { uploads } from "../utils/config";
 
 const NavBar = () => {
   const { auth } = useAuth();
@@ -40,7 +41,8 @@ const NavBar = () => {
 
   return (
     <nav id="nav">
-      <Link to="/">ReactGram</Link>
+      <Link to="/"><img src={`${uploads}/photos/Reactgram.png`} alt={"ractgram"} />
+              </Link>
       <form id="search-form" onSubmit={handleSearch}>
         <BsSearch />
         <input
